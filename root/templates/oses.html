@@ -1,0 +1,168 @@
+<!--
+This file is part of eol-tracker.
+
+Copyright © 2020 Datto, Inc.
+Author: Dakota Williams <drwilliams@datto.com>
+
+Licensed under the GNU Lesser General Public License Version 3
+Fedora-License-Identifier: LGPLv3+
+SPDX-2.0-License-Identifier: LGPL-3.0+
+SPDX-3.0-License-Identifier: LGPL-3.0-or-later
+
+eol-tracker is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+eol-tracker is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with eol-tracker.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<div class="visualization-scroll">
+<table class="table">
+<tr>
+    <th scope="col">Name</th>
+    <th scope="col">General Availability</th>
+    <th scope="col">End of Life</th>
+    <th scope="col">Repo File</th>
+    <th scope="col">
+        <button type="submit" class="btn btn-success btn-sm" data-toggle="modal" data-target="#createModal">Add New Platform</button>
+        <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <form class="inline-button form-inline" id="operating_system_create" method="POST" action="/settings/platforms/create" enctype="multipart/form-data">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="createModalLabel">Create New Platform</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="input-group">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">Name</span>
+                                </div>
+                                <input type="text" class="form-control" id="operating_system_create_name" name="name"/>
+                            </div>
+                            <br/>
+                            <div class="input-group">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">Version</span>
+                                </div>
+                                <input type="text" class="form-control" id="operating_system_create_version" name="version"/>
+                            </div>
+                            <br/>
+                            <div class="input-group">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">General Availability</span>
+                                </div>
+                                <input type="date" class="form-control" id="operating_system_create_birth" name="birth"/>
+                            </div>
+                            <br/>
+                            <div class="input-group">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">End of Life</span>
+                                </div>
+                                <input type="date" class="form-control" id="operating_system_create_death" name="death"/>
+                            </div>
+                            <br/>
+                            <div class="input-group">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">Repo File</span>
+                                </div>
+                                <div class="form-control form-inline" style="padding-top:3px; padding-bottom:3px;">
+                                    <input type="file" class="form-control-file" id="operating_system_create_repo" name="repo"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </th>
+</tr>
+{% for id, name, version, birth, death, repoFile in oses %}
+<tr id="operating_system_{{ id }}">
+    <td><span class="operating_system_{{ id }} name">{{ name }} {{ version }}</span></td>
+    <td><span class="operating_system_{{ id }} birth">{{ birth }}</span></td>
+    <td><span class="operating_system_{{ id }} death">{{ death }}</span></td>
+    <td><span class="operating_system_{{ id }} repoFile"><a href="/media/{{ repoFile }}">{{ repoFile }}</a></span></td>
+    <td class="button_list">
+        <button type="button" class="inline-button form-inline btn btn-primary btn-sm" data-toggle="modal" data-target="#updateModal_{{ id }}">Update</button>
+        <div class="modal fade" id="updateModal_{{ id }}" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <form class="inline-button form-inline" id="operating_system_{{ id }}_update" method="POST" action="/settings/platforms/update" enctype="multipart/form-data">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="updateModalLabel_{{ id }}">Update {{ name }}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="hidden" name="id" value="{{ id }}"/>
+                            <div class="input-group">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">Name</span>
+                                </div>
+                                <input type="text" class="form-control" id="operating_system_{{ id }}_update_name" name="name" value="{{ name }}"/>
+                            </div>
+                            <br/>
+                            <div class="input-group">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">Version</span>
+                                </div>
+                                <input type="text" class="form-control" id="operating_system_{{ id }}_update_version" name="version" value="{{ version }}"/>
+                            </div>
+                            <br/>
+                            <div class="input-group">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">General Availability</span>
+                                </div>
+                                <input type="date" class="form-control" id="operating_system_{{ id }}_update_birth" name="birth" value='{{ birth }}'/>
+                            </div>
+                            <br/>
+                            <div class="input-group">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">End of Life</span>
+                                </div>
+                                <input type="date" class="form-control" id="operating_system_{{ id }}_update_death" name="death" value='{{ death }}'/>
+                            </div>
+                            <br/>
+                            <div class="input-group">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">Repo File</span>
+                                </div>
+                                <div class="form-control form-inline" style="padding-top:3px; padding-bottom:3px;">
+                                    <input type="file" class="form-control-file" id="operating_system_{{ id }}_update_repo" name="repo" value='{{ repoFile }}'/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <form class="inline-button form-inline" id="operating_system_{{ id }}_delete" method="POST" action="/settings/platforms/delete">
+            <div class="form-group">
+                <input type="hidden" name="id" value="{{ id }}"/>
+                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+            </div>
+        </form>
+    </td>
+</tr>
+{% endfor %}
+</table>
+</div>

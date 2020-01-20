@@ -1,0 +1,82 @@
+<!--
+This file is part of eol-tracker.
+
+Copyright © 2020 Datto, Inc.
+Author: Dakota Williams <drwilliams@datto.com>
+
+Licensed under the GNU Lesser General Public License Version 3
+Fedora-License-Identifier: LGPLv3+
+SPDX-2.0-License-Identifier: LGPL-3.0+
+SPDX-3.0-License-Identifier: LGPL-3.0-or-later
+
+eol-tracker is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+eol-tracker is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with eol-tracker.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{ title }}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="/css/timeline.css"/>
+        <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="/">EOL Tracker</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item {% if activeNav == 'Distros' %}active{% endif %}">
+                        <a class="nav-link" href="/distros">Projects</a>
+                    </li>
+                    <li class="nav-item {% if activeNav == 'Collections' %}active{% endif %}">
+                        <a class="nav-link" href="/">Dependencies</a>
+                    </li>
+                    <li class="nav-item {% if activeNav == 'Settings' %}active{% endif %}">
+                        <a class="nav-link" href="/settings">Settings</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+                {% if sidebar.count %}
+                <nav class="col-md-1 d-none d-md-block bg-light sidebar">
+                    <div class="sidebar-sticky">
+                        <!--h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                            <span>Collections</span>
+                        </h6-->
+                        <ul class="nav flex-column">
+                            {% for item in sidebar %}
+                                <li class="nav-item sidebar-heading">
+                                    <a class="nav-link{% ifequal activeSidebar item %} active{% endifequal %}" href="{{ parent }}/{{ item }}">{{ item }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </nav>
+                {% endif %}
+                <main class="{% if sidebar.count %}col-md-11 {% endif %}ml-sm-auto content">
+                    {{ content }}
+                </main>
+            </div>
+        </div>
+    </body>
+</html>

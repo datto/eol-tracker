@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="45cm" height="38cm" viewBox="226 26 881 744" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g>
+    <polygon style="fill: #ffffff" points="551.266,118.893 781.747,176.513 551.266,234.134 320.786,176.513 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="551.266,118.893 781.747,176.513 551.266,234.134 320.786,176.513 "/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="551.266" y="180.413">
+      <tspan x="551.266" y="180.413">Is the distribution explicitly listed in the timeline?</tspan>
+    </text>
+  </g>
+  <g>
+    <ellipse style="fill: #ffffff" cx="993.933" cy="175.958" rx="105.067" ry="65.0336"/>
+    <ellipse style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" cx="993.933" cy="175.958" rx="105.067" ry="65.0336"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="993.933" y="179.858">
+      <tspan x="993.933" y="179.858">Use that one!</tspan>
+    </text>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="551.055,316.855 826.611,385.743 551.055,454.632 275.5,385.743 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="551.055,316.855 826.611,385.743 551.055,454.632 275.5,385.743 "/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="551.055" y="381.643">
+      <tspan x="551.055" y="381.643">Is one of the values of ID or ID_LIKE in /etc/os-release</tspan>
+      <tspan x="551.055" y="397.643">explicitly listed in the timeline?</tspan>
+    </text>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="549.941,509.886 765.097,563.675 549.941,617.464 334.786,563.675 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="549.941,509.886 765.097,563.675 549.941,617.464 334.786,563.675 "/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="549.941" y="567.575">
+      <tspan x="549.941" y="567.575">Does the system use DEB or RPM packages?</tspan>
+    </text>
+  </g>
+  <g>
+    <ellipse style="fill: #ffffff" cx="994.179" cy="386.584" rx="111.813" ry="70.0761"/>
+    <ellipse style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" cx="994.179" cy="386.584" rx="111.813" ry="70.0761"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="994.179" y="374.484">
+      <tspan x="994.179" y="374.484">Find a version of that distro</tspan>
+      <tspan x="994.179" y="390.484">that came out a little before</tspan>
+      <tspan x="994.179" y="406.484">this one.</tspan>
+    </text>
+  </g>
+  <g>
+    <ellipse style="fill: #ffffff" cx="993.895" cy="564.549" rx="87.1054" ry="56.0489"/>
+    <ellipse style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" cx="993.895" cy="564.549" rx="87.1054" ry="56.0489"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="993.895" y="560.449">
+      <tspan x="993.895" y="560.449">More investigation is</tspan>
+      <tspan x="993.895" y="576.449">necessary</tspan>
+    </text>
+  </g>
+  <g>
+    <ellipse style="fill: #ffffff" cx="377.335" cy="716.954" rx="150.266" ry="51.9544"/>
+    <ellipse style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" cx="377.335" cy="716.954" rx="150.266" ry="51.9544"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="377.335" y="712.854">
+      <tspan x="377.335" y="712.854">Find a version of CentOS or Fedora</tspan>
+      <tspan x="377.335" y="728.854">that came out a little before this one.</tspan>
+    </text>
+  </g>
+  <g>
+    <ellipse style="fill: #ffffff" cx="758.783" cy="713.545" rx="141.193" ry="54.591"/>
+    <ellipse style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" cx="758.783" cy="713.545" rx="141.193" ry="54.591"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="758.783" y="709.445">
+      <tspan x="758.783" y="709.445">Find a version of Debian or Ubuntu</tspan>
+      <tspan x="758.783" y="725.445">that came out a little before this one.</tspan>
+    </text>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="551" y1="27.4918" x2="551.144" y2="108.184"/>
+    <polygon style="fill: #000000" points="551.158,115.684 546.14,105.693 551.144,108.184 556.14,105.675 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="551.158,115.684 546.14,105.693 551.144,108.184 556.14,105.675 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="782.747" y1="176.223" x2="878.151" y2="176.103"/>
+    <polygon style="fill: #000000" points="885.651,176.094 875.657,181.107 878.151,176.103 875.644,171.107 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="885.651,176.094 875.657,181.107 878.151,176.103 875.644,171.107 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="551.207" y1="235.117" x2="551.135" y2="306.332"/>
+    <polygon style="fill: #000000" points="551.128,313.832 546.138,303.827 551.135,306.332 556.138,303.837 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="551.128,313.832 546.138,303.827 551.135,306.332 556.138,303.837 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="827.611" y1="386.268" x2="871.627" y2="386.352"/>
+    <polygon style="fill: #000000" points="879.127,386.366 869.118,391.347 871.627,386.352 869.137,381.347 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="879.127,386.366 869.118,391.347 871.627,386.352 869.137,381.347 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="550.618" y1="455.519" x2="550.345" y2="499.237"/>
+    <polygon style="fill: #000000" points="550.298,506.737 545.361,496.705 550.345,499.237 555.36,496.768 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="550.298,506.737 545.361,496.705 550.345,499.237 555.36,496.768 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="766.097" y1="564.1" x2="896.094" y2="564.356"/>
+    <polygon style="fill: #000000" points="903.594,564.371 893.584,569.351 896.094,564.356 893.604,559.351 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="903.594,564.371 893.584,569.351 896.094,564.356 893.604,559.351 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="501.807" y1="606.42" x2="439.872" y2="661.42"/>
+    <polygon style="fill: #000000" points="434.264,666.4 438.421,656.022 439.872,661.42 445.061,663.499 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="434.264,666.4 438.421,656.022 439.872,661.42 445.061,663.499 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="606.568" y1="604.312" x2="683.099" y2="659.232"/>
+    <polygon style="fill: #000000" points="689.192,663.605 678.152,661.837 683.099,659.232 683.983,653.712 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="689.192,663.605 678.152,661.837 683.099,659.232 683.983,653.712 "/>
+  </g>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="571" y="42">
+    <tspan x="571" y="42">Start</tspan>
+  </text>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="798" y="166">
+    <tspan x="798" y="166">Yes</tspan>
+  </text>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="563" y="248">
+    <tspan x="563" y="248">No</tspan>
+  </text>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="816" y="377">
+    <tspan x="816" y="377">Yes</tspan>
+  </text>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="562" y="465">
+    <tspan x="562" y="465">No</tspan>
+  </text>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="772" y="553.5">
+    <tspan x="772" y="553.5">No</tspan>
+  </text>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="498" y="628.5">
+    <tspan x="498" y="628.5">RPM</tspan>
+  </text>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="635" y="617.5">
+    <tspan x="635" y="617.5">DEB</tspan>
+  </text>
+</svg>
