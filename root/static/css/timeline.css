@@ -1,0 +1,235 @@
+/* This file is part of eol-tracker.
+ * 
+ * Copyright © 2020 Datto, Inc.
+ * Author: Dakota Williams <drwilliams@datto.com>
+ * 
+ * Licensed under the GNU Lesser General Public License Version 3
+ * Fedora-License-Identifier: LGPLv3+
+ * SPDX-2.0-License-Identifier: LGPL-3.0+
+ * SPDX-3.0-License-Identifier: LGPL-3.0-or-later
+ * 
+ * eol-tracker is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * eol-tracker is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with eol-tracker.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+html, body {
+    height: 100vh;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100; /* Behind the navbar */
+    padding: 56px 0 0 0; /* Height of navbar */
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+.sidebar-sticky {
+    position: relative;
+    top: 0;
+    height: calc(100vh - 56px);
+    padding-top: .5rem;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+
+@supports ((position: -webkit-sticky) or (position: sticky)) {
+    .sidebar-sticky {
+        position: -webkit-sticky;
+        position: sticky;
+    }
+}
+
+.sidebar .nav-link {
+    font-weight: 500;
+    color: slategray;
+}
+
+.sidebar .nav-link.active {
+    color:black;
+}
+
+.sidebar .nav-link:not(.active):hover {
+    color:darkslategray;
+}
+
+.sidebar-heading {
+    font-size: .75rem;
+    text-transform: uppercase;
+}
+
+.container-fluid {
+    height: 100%;
+    overflow-y: hidden;
+}
+
+.max-height-row {
+    height: 100%;
+    overflow-y: hidden;
+}
+
+.content {
+    padding-top: calc(48px + 0.5rem); /* Space for fixed navbar */
+    padding-left: 0px;
+    padding-right: 0px;
+    width: 100%;
+}
+
+.button_list {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+
+.inline-button {
+    margin-right: 1rem;
+}
+
+.vis-item.Fedora {
+    color: black;
+    background-color: lightskyblue;
+    border-color: blue;
+}
+
+.vis-item.openSUSE {
+    color: black;
+    background-color: greenyellow;
+    border-color: green;
+}
+
+.vis-item.CentOS {
+    color: black;
+    background-color: pink;
+    border-color: red;
+}
+
+.content td,th {
+    padding-right: 1rem;
+}
+
+#visualization {
+    padding: 0px;
+}
+
+.visualization-with-key {
+    height: calc(100vh - 56px - 68px);
+    overflow-y: auto;
+}
+
+.visualization-scroll {
+    height: calc(100vh - 56px);
+    overflow-y: auto;
+}
+
+#info {
+    display: none;
+    border-left-style: solid;
+    border-left-color: #999;
+    height: calc(100vh - 56px - 68px);
+    float: right;
+    overflow-y: auto;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.split-box {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#info-content {
+    padding-top: 1.0rem;
+}
+
+#info-content-title {
+    margin: 0;
+    top: 50%;
+}
+
+.vis-item.vis-selected {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.fullSupport {
+    background-color: hsl(240, 100%, 90%) !important;
+    border-color: hsl(240, 100%, 25%) !important;
+}
+
+.noupdatesSupport {
+    background-color: hsl(60, 100%, 75%) !important;
+    border-color: hsl(60, 100%, 25%) !important;
+}
+
+.deadSupport {
+    background-color: hsl(0, 100%, 90%) !important;
+    border-color: hsl(0, 100%, 50%) !important;
+}
+
+.center-spinner {
+    position: absolute;
+    top: 50%;
+    margin-top: -1rem;
+}
+
+.swatch {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+
+#flowchart {
+    max-width: 50vw;
+    height: 100vh;
+    float: left;
+    padding: 5px;
+}
+
+#flowchart-info {
+    padding: 15px;
+    height: 100vh;
+    overflow: auto;
+}
+
+.code-quote {
+    padding-left: 15px;
+    border-style: solid;
+    border-width: 0px 0px 0px 0.1875rem;
+    border-color: lightgrey
+}
+
+a.edit {
+    min-width: 10px;
+    color: inherit;
+}
+
+.editing {
+    display: none;
+}
+
+.subtable {
+    margin-bottom: 0px !important;
+}
+
+.cell-subtable {
+    padding: 0px !important;
+    border-collapse: collapse;
+    /*
+    border-left: 1px solid #dee2e6;
+    border-right: 1px solid #dee2e6;
+    */
+    border-left: 5px solid white;
+    border-right: 5px solid white;
+}

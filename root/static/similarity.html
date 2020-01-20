@@ -1,0 +1,102 @@
+<!--
+This file is part of eol-tracker.
+
+Copyright © 2020 Datto, Inc.
+Author: Dakota Williams <drwilliams@datto.com>
+
+Licensed under the GNU Lesser General Public License Version 3
+Fedora-License-Identifier: LGPLv3+
+SPDX-2.0-License-Identifier: LGPL-3.0+
+SPDX-3.0-License-Identifier: LGPL-3.0-or-later
+
+eol-tracker is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+eol-tracker is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with eol-tracker.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Similarity Flowchart | EOL Tracker</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="/css/timeline.css"/>
+        <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+    </head>
+    <body>
+        <img src="/img/similarityFlowchart.svg" alt="flowchart" id="flowchart">
+        <div id="flowchart-info">
+            <p class="lead">
+                In the Linux world, everybody wants to make their own distribution.
+                Usually, custom or esoteric distributions are based on one of the major distributions.
+                This flowchart attempts to unravel what these lesser known distributions are under the hood.
+                The three major distributions are: RHEL/CentOS, SuSE Enterprise, and Debian.
+                Each of these have a quicker updating variant: Fedora, openSuSE, and Ubuntu, respectively.
+                Typically, a lesser known distribution will be based on CentOS, the non-subscription based RHEL,
+                especially (at the time of this writing) if the version starts with 6, 7, or 8.
+            </p>
+            <h4>Examples</h4>
+            <h5>Sangoma Linux 7</h5>
+            <p>
+                For a simple example, let's take Sangoma Linux 7.
+                This variety is what FreePBX ships with.
+                Starting with the first question, "Is the distribution explicitly listed in the timeline?"
+                This one is pretty easy, it's not (and if it is, let's ignore it for the sake of the example), so we can
+                move on to the next one, "Is one of the values of <samp>ID_LIKE</samp> in <samp>/etc/os-release</samp>
+                explicitly listed in the timeline?"
+                Looking at the file, we see:
+<pre class="code-quote">NAME="Sangoma Linux"
+VERSION="7 (Core)"
+ID="sangoma"
+ID_LIKE="centos rhel fedora"
+VERSION_ID="7"
+PRETTY_NAME="Sangoma Linux 7 (Core)"
+...</pre>
+                <samp>ID_LIKE</samp> has some names that look familiar.
+                CentOS / RHEL should be the first shot.
+                This also seems to line up with CentOS's and RHEL's versioning scheme.
+                The CentOS 7 package would be the most similar.
+                Sometimes, the <samp>ID</samp> field will not match the name of the distribution, but instead be the
+                name of the distribution it's based on.
+            </p>
+            <h5>Photon OS 3</h5> 
+            <p>
+                This is VMware's distribution that is specialized to work with their products.
+                Again, we'll assume this this not on the timeline.
+                The contents of <samp>/etc/os-release</samp> don't help much.
+<pre class="code-quote">NAME="VMware Photon OS"
+VERSION="3.0"
+ID="photon"
+VERSION_ID=3.0
+PRETTY_NAME="VMware Photon OS/Linux"
+...</pre>
+                However, the machine has <samp>rpm</samp> installed (for RPM packages, we'd be looking for
+                <samp>dpkg</samp> for DEB packages).
+                The kernel version (at the time of this writing) is 4.19.15, a little bit newer than RHEL 8's.
+                The RHEL/CentOS package will most likely work the best.
+            </p>
+            <h5>Arch Linux</h5>
+            <p>
+                This is an example of a distribution that has no obvious relation to any others.
+                The name probably is not on the list, and <samp>/etc/os-release</samp> provides nothing helpful.
+<pre class="code-quote">NAME="Arch Linux"
+ID=arch
+PRETTY_NAME="Arch Linux"
+...</pre>
+                Looking at what package manager it uses, pacman, we can see that it uses it's own package format.
+                This distro will probably take some work to explicitly support.
+            </p>
+        </div>
+    </body>
+</html>

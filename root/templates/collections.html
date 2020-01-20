@@ -1,0 +1,291 @@
+<!--
+This file is part of eol-tracker.
+
+Copyright © 2020 Datto, Inc.
+Author: Dakota Williams <drwilliams@datto.com>
+
+Licensed under the GNU Lesser General Public License Version 3
+Fedora-License-Identifier: LGPLv3+
+SPDX-2.0-License-Identifier: LGPL-3.0+
+SPDX-3.0-License-Identifier: LGPL-3.0-or-later
+
+eol-tracker is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+eol-tracker is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with eol-tracker.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<div class="visualization-scroll">
+<table class="table">
+<tr>
+    <th scope="col">Name</th>
+    <th scope="col">Platforms</th>
+    <th scope="col">Dependencies</th>
+    <th scope="col">Issues</th>
+    <th scope="col">
+        <button type="submit" class="btn btn-success btn-sm" data-toggle="modal" data-target="#createModal">Add New Project</button>
+        <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <form class="inline-button form-inline" id="project_create" method="POST" action="/settings/projects/create">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="createModalLabel">Create New Project</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="input-group">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">Name</span>
+                                </div>
+                                <input type="text" class="form-control" id="project_create_name" name="name"/>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </th>
+</tr>
+{% for k, v in collections.items %}
+<tr>
+    <td>
+        <form method="POST" class="edit-form">
+            <a class="edit name" href="#">{{ k }}</a>
+            <input type="text" class="editing form-control" name="name"/>
+            <input type="hidden" class="id" name="id" value="{{v.0}}"/>
+        </form>
+    </td>
+    <td class="cell-subtable">
+        <table class="table subtable">
+        {% for l, w in v.1.items %}
+            <tr>
+                <td>
+                    <form method="POST" class="edit-form">
+                        <a class="edit platform" href="#">{{ l }}</a>
+                        <select class="editing form-control" name="platform">
+                        {% for name, id in platforms.items %}
+                            <option value="{{id}}">{{name}}</option>
+                        {% endfor %}
+                        </select>
+                        <input type="hidden" class="id" name="osid" value="{{w.0}}"/>
+                        <input type="hidden" class="id" name="id" value="{{v.0}}"/>
+                    </form>
+                </td>
+                <td>
+                    <form method="POST" class="edit-form">
+                        <a class="edit supportStatus" href="#">{{ w.1 }}</a>
+                        <select class="editing form-control" name="supportStatus">
+                            <option value="0">Updates</option>
+                            <option value="1">No Updates</option>
+                            <option value="2">No Release Yet</option>
+                        </select>
+                        <input type="hidden" class="id" name="osid" value="{{w.0}}"/>
+                        <input type="hidden" class="id" name="id" value="{{v.0}}"/>
+                    </form>
+                </td>
+                <td>
+                    <form class="remove-form" method="POST">
+                        <button type="submit" class="btn btn-danger btn-sm">&times;</button>
+                        <input type="hidden" class="id" name="osid" value="{{w.0}}"/>
+                        <input type="hidden" class="id" name="id" value="{{v.0}}"/>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+            <tr>
+                <td colspan="3">
+                    <button type="submit" class="btn btn-success btn-block btn-sm" data-toggle="modal" data-target="#platformModal-{{v.0}}">Add Platform</button>
+                    <div class="modal fade" id="platformModal-{{v.0}}" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <form class="add-form inline-button form-inline" method="POST">
+                                <input type="hidden" class="id" name="id" value="{{v.0}}"/>
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Add Platform</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="input-group">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">Name</span>
+                                            </div>
+                                            <select class="form-control" name="platform">
+                                            {% for name, id in platforms.items %}
+                                                <option value="{{id}}">{{name}}</option>
+                                            {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">Support Status</span>
+                                            </div>
+                                            <select class="form-control" name="supportStatus">
+                                                <option value="0">Updates</option>
+                                                <option value="1">No Updates</option>
+                                                <option value="2">No Release Yet</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </td>
+    <td class="cell-subtable">
+        <table class="table subtable">
+        {% for item, w in v.2.items %}
+            <tr>
+                <td>
+                    <form method="POST" class="edit-form">
+                        <a class="edit dependency" href="#">{{ item }}</a>
+                        <select class="editing form-control" name="dependency">
+                        {% for name, id in dependencies.items %}
+                            <option value="{{id}}">{{name}}</option>
+                        {% endfor %}
+                        </select>
+                        <input type="hidden" class="id" name="depid" value="{{w.0}}"/>
+                        <input type="hidden" class="id" name="id" value="{{v.0}}"/>
+                    </form>
+                </td>
+                <td>
+                    <form class="remove-form" method="POST">
+                        <button type="submit" class="btn btn-danger btn-sm">&times;</button>
+                        <input type="hidden" class="id" name="depid" value="{{w.0}}"/>
+                        <input type="hidden" class="id" name="id" value="{{v.0}}"/>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+            <td colspan="2">
+                <button type="submit" class="btn btn-success btn-block btn-sm" data-toggle="modal" data-target="#depModal-{{v.0}}">Add Dependency</button>
+                <div class="modal fade" id="depModal-{{v.0}}" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <form class="add-form inline-button form-inline" method="POST">
+                            <input type="hidden" class="id" name="id" value="{{v.0}}"/>
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Add Dependency</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="input-group">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">Name</span>
+                                        </div>
+                                        <select class="form-control" name="dependency">
+                                        {% for name, id in dependencies.items %}
+                                            <option value="{{id}}">{{name}}</option>
+                                        {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </td>
+        </table>
+    </td>
+    <td class="cell-subtable">
+        <table class="table subtable">
+        {% for item, w in v.3.items %}
+            <tr>
+                <td>
+                    <form method="POST" class="edit-form">
+                        <a class="edit issue" href="#">{{ item }}</a>
+                        <select class="editing form-control" name="issue">
+                        {% for name, id in issues.items %}
+                            <option value="{{id}}">{{name}}</option>
+                        {% endfor %}
+                        </select>
+                        <input type="hidden" class="id" name="issueid" value="{{w.0}}"/>
+                        <input type="hidden" class="id" name="id" value="{{v.0}}"/>
+                    </form>
+                </td>
+                <td>
+                    <form class="remove-form" method="POST">
+                        <button type="submit" class="btn btn-danger btn-sm">&times;</button>
+                        <input type="hidden" class="id" name="issueid" value="{{w.0}}"/>
+                        <input type="hidden" class="id" name="id" value="{{v.0}}"/>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+            <td colspan="2">
+                <button type="submit" class="btn btn-success btn-block btn-sm" data-toggle="modal" data-target="#issueModal-{{v.0}}">Add Issue</button>
+                <div class="modal fade" id="issueModal-{{v.0}}" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <form class="add-form inline-button form-inline" method="POST">
+                            <input type="hidden" class="id" name="id" value="{{v.0}}"/>
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Add Issue</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="input-group">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">Name</span>
+                                        </div>
+                                        <select class="form-control" name="issue">
+                                        {% for name, id in issues.items %}
+                                            <option value="{{id}}">{{name}}</option>
+                                        {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </td>
+        </table>
+    </td>
+    <td>
+        <form class="inline-button form-inline" id="project_{{ v.0 }}_delete" method="POST" action="/settings/projects/delete">
+            <div class="form-group">
+                <input type="hidden" name="id" value="{{ v.0 }}"/>
+                <button type="submit" class="btn btn-danger btn-sm">Delete {{k}}</button>
+            </div>
+        </form>
+    </td>
+</tr>
+{% endfor %}
+</table>
+</div>
+<script src="/js/main.js"></script>

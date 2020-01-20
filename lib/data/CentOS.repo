@@ -1,0 +1,91 @@
+# CentOS-Base.repo
+#
+# The mirror system uses the connecting IP address of the client and the
+# update status of each mirror to pick mirrors that are updated to and
+# geographically close to the client.  You should use this for CentOS updates
+# unless you are manually picking other mirrors.
+#
+# If the mirrorlist= does not work for you, as a fall back you can try the 
+# remarked out baseurl= line instead.
+#
+#
+
+[base]
+name=CentOS-$releasever - Base
+mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=os&infra=$infra
+#baseurl=http://mirror.centos.org/centos/$releasever/os/$basearch/
+gpgcheck=1
+gpgkey=file:///usr/share/distribution-gpg-keys/centos/RPM-GPG-KEY-CentOS-$releasever
+repo_gpgcheck=1
+
+#released updates 
+[updates]
+name=CentOS-$releasever - Updates
+mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=updates&infra=$infra
+#baseurl=http://mirror.centos.org/centos/$releasever/updates/$basearch/
+gpgcheck=1
+gpgkey=file:///usr/share/distribution-gpg-keys/centos/RPM-GPG-KEY-CentOS-$releasever
+repo_gpgcheck=1
+
+#additional packages that may be useful
+[extras]
+name=CentOS-$releasever - Extras
+mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=extras&infra=$infra
+#baseurl=http://mirror.centos.org/centos/$releasever/extras/$basearch/
+gpgcheck=1
+gpgkey=file:///usr/share/distribution-gpg-keys/centos/RPM-GPG-KEY-CentOS-$releasever
+repo_gpgcheck=1
+
+# CentOS-SCLo-sclo.repo
+#
+# Please see http://wiki.centos.org/SpecialInterestGroup/SCLo for more
+# information
+
+[centos-sclo-scl]
+name=CentOS-$releasever - SCLo sclo
+# baseurl=http://mirror.centos.org/centos/$releasever/sclo/$basearch/sclo/
+mirrorlist=http://mirrorlist.centos.org?arch=$basearch&release=$releasever&repo=sclo-sclo
+gpgcheck=1
+enabled=1
+gpgkey=file:///usr/share/distribution-gpg-keys/centos/RPM-GPG-KEY-CentOS-SIG-SCLo
+#repo_gpgcheck=1
+
+# CentOS-SCLo-rh.repo
+#
+# Please see http://wiki.centos.org/SpecialInterestGroup/SCLo for more
+# information
+
+[centos-sclo-rh]
+name=CentOS-$releasever - SCLo rh
+#baseurl=http://mirror.centos.org/centos/$releasever/sclo/$basearch/rh/
+mirrorlist=http://mirrorlist.centos.org?arch=$basearch&release=$releasever&repo=sclo-rh
+gpgcheck=1
+enabled=1
+gpgkey=file:///usr/share/distribution-gpg-keys/centos/RPM-GPG-KEY-CentOS-SIG-SCLo
+#repo_gpgcheck=1
+
+[datto-mercury]
+name=Datto Mercury
+baseurl=http://build.datto.net:82/Datto:/Mercury/CentOS_$releasever/
+enabled=1
+gpgcheck=0
+
+[datto-rpm]
+name=Datto RPM Repository for Enterprise Linux $releasever - $basearch
+failovermethod=priority
+baseurl=https://cpkg.datto.com/datto-rpm/EnterpriseLinux/$releasever/$basearch/
+enabled=1
+metadata_expire=6h
+gpgcheck=0
+repo_gpgcheck=0
+gpgkey=file:///etc/pki/rpm-gpg/DATTO-PKGS-GPG-KEY
+
+[epel]
+name=Extra Packages for Enterprise Linux $releasever - $basearch
+#baseurl=http://download.fedoraproject.org/pub/epel/$releasever/$basearch
+metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-$releasever&arch=$basearch
+failovermethod=priority
+enabled=1
+gpgcheck=1
+gpgkey=file:///usr/share/distribution-gpg-keys/epel/RPM-GPG-KEY-EPEL-$releasever
+
