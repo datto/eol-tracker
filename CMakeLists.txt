@@ -23,7 +23,7 @@ You should have received a copy of the GNU Lesser General Public License
 along with eol-tracker.  If not, see <https://www.gnu.org/licenses/>.
 ]]
 
-project(eol-tracker CXX)
+project(eoltrackerweb CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 

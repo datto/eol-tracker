@@ -23,20 +23,20 @@ You should have received a copy of the GNU Lesser General Public License
 along with eol-tracker.  If not, see <https://www.gnu.org/licenses/>.
 ]]
 
-file(GLOB_RECURSE frontend_SRCS *.cpp *.h)
+file(GLOB_RECURSE eoltrackerweb_SRCS *.cpp *.h)
 
-set(frontend_SRCS
-    ${frontend_SRCS}
+set(eoltrackerweb_SRCS
+    ${eoltrackerweb_SRCS}
     ${TEMPLATES_SRC}
 )
 
 # Create the application
-add_library(frontend SHARED ${frontend_SRCS})
-target_compile_options(frontend PRIVATE -ggdb)
-target_include_directories(frontend PRIVATE eoltracker)
+add_library(eoltrackerweb SHARED ${eoltrackerweb_SRCS})
+target_compile_options(eoltrackerweb PRIVATE -ggdb)
+target_include_directories(eoltrackerweb PRIVATE eoltracker)
 
 # Link to Cutelyst
-target_link_libraries(frontend
+target_link_libraries(eoltrackerweb
     Cutelyst::Core
     Qt5::Core
     Qt5::Network
