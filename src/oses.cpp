@@ -96,9 +96,9 @@ void Oses::oses_create(Context* c)
         }
     }
 
-    QSqlQuery query = CPreparedSqlQueryThreadForDB("insert or ignore into operating_system (name, version, birth, death) values (:name, :version, :birth, :death)", "eol");
+    QSqlQuery query = CPreparedSqlQueryThreadForDB("insert into operating_system (name, version, birth, death) values (:name, :version, :birth, :death) on conflict do nothing", "eol");
     if (repoFile) {
-        query = CPreparedSqlQueryThreadForDB("insert or ignore into operating_system (name, version, birth, death, repoFile) values (:name, :version, :birth, :death, :repo)", "eol");
+        query = CPreparedSqlQueryThreadForDB("insert into operating_system (name, version, birth, death, repoFile) values (:name, :version, :birth, :death, :repo) on conflict do nothing", "eol");
         query.bindValue(":repo", filename);
     }
     query.bindValue(":name", name);

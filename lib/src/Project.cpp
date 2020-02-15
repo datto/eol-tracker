@@ -53,7 +53,7 @@ Project::Project(const std::string& name, const std::vector<std::string>& alt)
             }
         );
 
-        query = CPreparedSqlQueryThreadForDB("insert or ignore into project (name, alt) values (:name, :alt)", "eol");
+        query = CPreparedSqlQueryThreadForDB("insert into project (name, alt) values (:name, :alt) on conflict do nothing", "eol");
         query.bindValue(":name", name.c_str());
         query.bindValue(":alt", colonSep.c_str());
         if (!query.exec()) {

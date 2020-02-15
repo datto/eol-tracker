@@ -53,7 +53,7 @@ OperatingSystem::OperatingSystem(std::string name, const Version& version, const
     }
     else {
         query = CPreparedSqlQueryThreadForDB(
-            "insert or ignore into operating_system (name, version, birth, death, repoFile) values (:name, :version, :birth, :death, :repo)", "eol");
+            "insert into operating_system (name, version, birth, death, repoFile) values (:name, :version, :birth, :death, :repo) on conflict do nothing", "eol");
         query.bindValue(":name", name.c_str());
         query.bindValue(":version", std::to_string(version).c_str());
         query.bindValue(":birth", birth.c_str());
