@@ -22,4 +22,4 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with eol-tracker.  If not, see <https://www.gnu.org/licenses/>.
 
-cutelyst2 -r --server --app-file `pwd`/../build/src/libfrontend.so -- --chdir ..
+cutelyst2 -r --server --app-file `pwd`/../build/src/libeoltrackerweb.so -- --chdir ..

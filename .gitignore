@@ -2,3 +2,4 @@
 build/
 node_modules/
 main.js
+root/static/media
