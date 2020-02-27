@@ -100,11 +100,16 @@ void UpdateThread::run()
                     eoltracker::RepoScan scan(os, m_config.getRepoCacheDir());
                     for (auto& proj : projects)
                     {
-                        scan.getPackage(proj);
+                        try {
+                            scan.getPackage(proj);
+                        }
+                        catch (const std::exception& e) { // can't find the package
+                            qWarning() << e.what();
+                        }
                     }
                 }
                 catch (const std::exception& e) {
-                    qWarning() << "Failure for " << name.c_str() << ": " << e.what();
+                    qCritical() << "Failure for " << name.c_str() << ": " << e.what();
                 }
             }
             //);
