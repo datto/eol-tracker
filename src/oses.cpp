@@ -146,7 +146,8 @@ void Oses::oses_update(Context* c)
     }
     auto repoFile = c->request()->upload("repo");
     auto filename = name + " " + version + ".repo";
-    if (repoFile)
+    auto fileUploaded = !repoFile->filename().isEmpty();
+    if (fileUploaded)
     {
         auto path = std::filesystem::path(WEBROOT "/static/media") / filename.toStdString();
         unlink(path.c_str());
@@ -158,7 +159,7 @@ void Oses::oses_update(Context* c)
     }
 
     QSqlQuery query = CPreparedSqlQueryThreadForDB("update operating_system set name=:name, version=:version, birth=:birth, death=:death where id=:id", "eol");
-    if (repoFile) {
+    if (fileUploaded) {
         query = CPreparedSqlQueryThreadForDB("update operating_system set name=:name, version=:version, birth=:birth, death=:death, repoFile=:repo where id=:id", "eol");
         query.bindValue(":repo", filename);
     }
