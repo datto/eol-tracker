@@ -32,8 +32,6 @@
 
 using namespace std::string_literals;
 
-static auto versionQuery = CPreparedSqlQueryThreadForDB("select version from operating_system where id=:id", "eol");
-
 namespace eoltracker {
 
 OperatingSystem::OperatingSystem(int id) :
