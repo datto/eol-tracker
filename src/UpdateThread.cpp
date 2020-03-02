@@ -31,7 +31,6 @@
 
 #include <algorithm>
 #include <exception>
-#include <execution>
 #include <vector>
 
 #include <QtGlobal>
@@ -93,7 +92,6 @@ void UpdateThread::run()
                 oses.emplace_back(query.value(0).toInt());
             }
 
-            //std::for_each(std::begin(oses), std::end(oses), [&projects](eoltracker::OperatingSystem& os) {
             for (auto& os : oses) {
                 auto name = os.getName() + " "s + std::to_string(os.getVersion());
                 try {
@@ -112,7 +110,6 @@ void UpdateThread::run()
                     qCritical() << "Failure for " << name.c_str() << ": " << e.what();
                 }
             }
-            //);
         }
         catch (const std::exception& e) {
             qCritical() << "update loop caught exception: " << e.what();
