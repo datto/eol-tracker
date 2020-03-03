@@ -39,7 +39,7 @@
 
 using namespace Cutelyst;
 
-frontend::frontend(QObject *parent) : Application(parent), m_config(CONFDIR "/eoltracker.conf"), m_updateThread(m_config)
+frontend::frontend(QObject *parent) : Application(parent), m_config(CONFDIR "/eol-tracker.conf"), m_updateThread(m_config)
 {
 }
 
