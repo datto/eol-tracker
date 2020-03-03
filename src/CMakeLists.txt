@@ -27,11 +27,10 @@ file(GLOB_RECURSE eoltrackerweb_SRCS *.cpp *.h)
 
 set(eoltrackerweb_SRCS
     ${eoltrackerweb_SRCS}
-    ${TEMPLATES_SRC}
 )
 
 # Create the application
-add_library(eoltrackerweb SHARED ${eoltrackerweb_SRCS})
+add_executable(eoltrackerweb ${eoltrackerweb_SRCS})
 target_compile_options(eoltrackerweb PRIVATE -ggdb)
 target_include_directories(eoltrackerweb PRIVATE eoltracker)
 
@@ -45,5 +44,9 @@ target_link_libraries(eoltrackerweb
     Cutelyst::StaticSimple
     Qt5::Sql
     Cutelyst::Utils::Sql
+    Cutelyst::WSGI
+    Cutelyst::Session
     eoltracker
 )
+
+install(TARGETS eoltrackerweb DESTINATION ${CMAKE_INSTALL_LIBEXECDIR})
