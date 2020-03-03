@@ -7,6 +7,7 @@ License:        LGPLv3+
 URL:            https://github.com/datto/eol-tracker
 Source0:        %{url}/archive/%{version}/%{name}-%{version}.tar.gz
 
+BuildRequires:  pkgconfig(systemd)
 BuildRequires:  cmake >= 3.5
 BuildRequires:  gcc-c++
 BuildRequires:  cmake(Cutelyst2Qt5)
@@ -26,24 +27,33 @@ different Linux distributions have available. With this new, powerful informatio
 you can make decisions on what features you can rely on for your project given a
 set of target distributions.
 
+%global webroot %{_datadir}/%{name}
+
 %prep
 %autosetup
 
 
 %build
 mkdir -p %{_vpath_builddir}
-%cmake -S %{_vpath_srcdir} -B %{_vpath_builddir}
+%cmake -S %{_vpath_srcdir} -B %{_vpath_builddir} -DEOLTRACKER_WEBROOT="%{webroot}" -DEOLTRACKER_CONFDIR="%{_sysconfdir}"
 %make_build -C %{_vpath_builddir}
 
 
 %install
-#make_install -C %{_vpath_builddir}
+mkdir -p %{buildroot}%{webroot}/static/media
+mkdir -p %{buildroot}%{_localstatedir}/cache/%{name}
+%make_install -C %{_vpath_builddir}
 
 
 %files
 %license COPYING* LICENSING.md
 %doc README.md
-
+%config(noreplace) %{_sysconfdir}/eol-tracker.conf
+%{_localstatedir}/cache/%{name}
+%{_libexecdir}/eoltrackerweb
+%{_libdir}/libeoltracker.so
+%{webroot}
+%{_unitdir}/eol-tracker.service
 
 
 %changelog
