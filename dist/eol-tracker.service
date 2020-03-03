@@ -1,0 +1,11 @@
+[Unit]
+Description=eol-tracker
+
+[Service]
+Type=simple
+ExecStart=/usr/libexec/eoltrackerweb
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target

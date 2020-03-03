@@ -65,3 +65,5 @@ target_link_libraries(eoltracker PUBLIC
     Qt5::Network
     Qt5::Sql
     Cutelyst::Utils::Sql)
+
+install(TARGETS eoltracker DESTINATION ${CMAKE_INSTALL_LIBDIR})

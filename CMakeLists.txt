@@ -32,12 +32,20 @@ if (POLICY CMP0043)
   cmake_policy(SET CMP0043 NEW)
 endif()
 
+include(GNUInstallDirs)
+
+find_package(PkgConfig REQUIRED)
+
 find_package(Qt5 COMPONENTS Core Network Sql REQUIRED)
 find_package(Cutelyst2Qt5 REQUIRED)
 find_package(cpptoml REQUIRED)
+pkg_check_modules(SYSTEMD REQUIRED systemd)
+pkg_get_variable(SYSTEMDUNITDIR systemd systemdsystemunitdir)
 
-add_compile_definitions(WEBROOT="${CMAKE_CURRENT_SOURCE_DIR}/root")
-add_compile_definitions(CONFDIR="${CMAKE_CURRENT_SOURCE_DIR}/dist")
+set(EOLTRACKER_WEBROOT "${CMAKE_CURRENT_SOURCE_DIR}/root" CACHE STRING "Where to expect the web templates and static assets")
+set(EOLTRACKER_CONFDIR "${CMAKE_CURRENT_SOURCE_DIR}/dist" CACHE STRING "Where to expect the config file")
+add_compile_definitions(WEBROOT="${EOLTRACKER_WEBROOT}")
+add_compile_definitions(CONFDIR="${EOLTRACKER_CONFDIR}")
 
 # Auto generate moc files
 set(CMAKE_AUTOMOC ON)
@@ -52,8 +60,6 @@ include_directories(
     ${Cutelyst2Qt5_INCLUDE_DIR}
 )
 
-file(GLOB_RECURSE TEMPLATES_SRC root/*)
-
 # webpack js
 add_custom_target(yarn ALL "yarn"
   DEPENDS "package.json"
@@ -61,7 +67,7 @@ add_custom_target(yarn ALL "yarn"
   VERBATIM USES_TERMINAL
 )
 add_custom_target(webpack ALL "npx" "webpack" "--config" "webpack.config.js"
-  BYPRODUCTS "${CMAKE_CURRENT_SOURCE_DIR}/root/static/js/main.js"
+  BYPRODUCTS "${EOLTRACKER_WEBROOT}/static/js/main.js"
   DEPENDS "webpack.config.js" "js/timeline.js"
   WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
   VERBATIM USES_TERMINAL
@@ -73,5 +79,12 @@ add_dependencies(js webpack)
 # actual web project
 add_subdirectory(src)
 
-# add backend project for eoltrackerd
+# add backend project for eoltracker
 add_subdirectory(lib)
+
+# install webroot stuff to real webroot
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/root/static ${CMAKE_CURRENT_SOURCE_DIR}/root/templates DESTINATION ${EOLTRACKER_WEBROOT})
+# install config file
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/dist/eol-tracker.conf DESTINATION ${EOLTRACKER_CONFDIR})
+# install systemd service
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/dist/eol-tracker.service DESTINATION ${SYSTEMDUNITDIR})
