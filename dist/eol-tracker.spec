@@ -21,6 +21,14 @@ BuildRequires:  %{_bindir}/yarnpkg
 
 Requires:       distribution-gpg-keys
 
+# plugins that aren't found during build
+Requires:       cutelyst2-plugins
+Requires:       qt5-qtbase-postgresql
+
+# translation files
+Requires:       libCutelyst2Qt5-2-lang
+Requires:       libCutelyst2Qt5ViewGrantlee2-lang
+
 %description
 eol-tracker is an application that allows you to monitor what package versions
 different Linux distributions have available. With this new, powerful information,
