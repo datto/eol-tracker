@@ -70,6 +70,7 @@ bool frontend::postFork()
     QSqlDatabase db = QSqlDatabase::addDatabase("QPSQL", Cutelyst::Sql::databaseNameThread("eol"));
     db.setDatabaseName(QString::fromStdString(m_config.getDatabaseName()));
     db.setHostName(QString::fromStdString(m_config.getDatabaseLocation()));
+    db.setPort(m_config.getDatabasePort());
     db.setUserName(QString::fromStdString(m_config.getDatabaseUsername()));
     if (m_config.getDatabasePassword() != "") {
         db.setPassword(QString::fromStdString(m_config.getDatabasePassword()));

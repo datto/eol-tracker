@@ -42,6 +42,7 @@ public:
     std::string getDatabasePassword() const;
     std::string getDatabaseOptions() const;
     std::string getDatabaseLocation() const;
+    int getDatabasePort() const;
 
     std::filesystem::path getRepoCacheDir() const;
 
