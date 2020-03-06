@@ -54,6 +54,11 @@ std::string Config::getDatabaseLocation() const
     return m_toml->get_qualified_as<std::string>("db.location").value_or("");
 }
 
+int Config::getDatabasePort() const
+{
+    return m_toml->get_qualified_as<int>("db.port").value_or(5432);
+}
+
 std::filesystem::path Config::getRepoCacheDir() const
 {
     return m_toml->get_qualified_as<std::string>("dnf.cacheDir").value_or("");
