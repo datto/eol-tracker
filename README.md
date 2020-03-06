@@ -22,7 +22,7 @@ You should also set the value of `dnf.cacheDir` if you're not happy with the def
 This directory is where each of the platforms specified in the app will set up their "chroots".
 Each chroot only contains a dnf cache and an extremely basic os-release.
 
-## Building and running
+## Building and Running
 
 There's a few dependencies that you'll need:
 
@@ -42,5 +42,17 @@ Make will take care of both compiling the C++ and pulling the yarn deps and webp
 mkdir build; cd build
 cmake ..
 make
-./eoltrackerweb
+src/eoltrackerweb
 ```
+
+## Container Setup
+
+The main container is built with the Dockerfile in dist:
+
+```sh
+docker build . -f dist/Dockerfile -t eol-tracker
+```
+
+There is a kubernetes/podman pod definition in `dist/pod.yaml` for setting up a pod that includes the main eol-tracker image as well as the dependant postgres service.
+Note the environment options for the postgres service and the web config volume mount before running.
+
