@@ -42,7 +42,7 @@ Settings::~Settings()
 
 void Settings::index(Context *c)
 {
-    c->response()->redirect("settings/projects");
+    c->response()->redirect(c->uriFor(CActionFor("projects")));
 }
 
 static QString supportString(int val) {

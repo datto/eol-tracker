@@ -53,7 +53,7 @@ void Root::index(Context *c)
         c->response()->redirect("view/" + defaultCollection);
     }
     else {
-        c->response()->redirect(c->uriFor(CActionFor("settings")));
+        c->response()->redirect("settings");
     }
 }
 
@@ -72,7 +72,7 @@ void Root::distros_index(Context* c)
         c->response()->redirect("distros/" + defaultCollection);
     }
     else {
-        c->response()->redirect(c->uriFor(CActionFor("settings")));
+        c->response()->redirect("settings");
     }
 }
 
