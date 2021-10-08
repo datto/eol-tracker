@@ -22,8 +22,9 @@
  * along with eol-tracker.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import Timeline from 'vis-timeline';
-import DataSet from 'vis-data';
+import { DataSet } from 'vis-data/peer';
+import { Timeline } from 'vis-timeline/peer';
+import 'vis-timeline/dist/vis-timeline-graph2d.min.css';
 
 function versionCompare(v1, v2, options) {
     var lexicographical = options && options.lexicographical,
