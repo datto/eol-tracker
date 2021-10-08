@@ -26,29 +26,34 @@
 #include "frontend.h"
 
 #include <QCoreApplication>
-#include <Cutelyst/WSGI/wsgi.h>
+#include <Cutelyst/Server/server.h>
 #include <memory>
 
 int main(int argc, char *argv[])
 {
     QCoreApplication app(argc, argv);
     auto myapp = std::make_unique<frontend>();
-    auto wsgi = std::make_unique<CWSGI::WSGI>();
-    wsgi->setHttpSocket({
+
+    Cutelyst::Server server;
+
+    QObject::connect(&server, &Cutelyst::Server::errorOccured, [](const QString &error) {
+        qFatal("Server terminated due to error %s", qPrintable(error));
+    });
+
+    server.setHttpSocket({
         {QStringLiteral(":3000")},
     });
-    wsgi->setUpgradeH2c(true);
-    wsgi->setBufferSize(16393);
-    wsgi->setHttp2Socket({
+    server.setUpgradeH2c(true);
+    server.setBufferSize(16393);
+    server.setHttp2Socket({
         {QStringLiteral(":3001")},
     });
-    wsgi->setFastcgiSocket({
+    server.setFastcgiSocket({
         {QStringLiteral(":3002")},
     });
-    wsgi->setMaster(true);
-    wsgi->setAutoReload(true);
-    wsgi->setLazy(true);
-    wsgi->exec(myapp.get());
+    server.setMaster(true);
+    server.setAutoReload(true);
+    server.setLazy(true);
 
-    return 0;
+    return server.exec(myapp.get());
 }

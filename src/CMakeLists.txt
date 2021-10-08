@@ -37,6 +37,7 @@ target_include_directories(eoltrackerweb PRIVATE eoltracker)
 # Link to Cutelyst
 target_link_libraries(eoltrackerweb
     Cutelyst::Core
+    Cutelyst::Server
     Qt5::Core
     Qt5::Network
     Cutelyst::View::Grantlee
@@ -44,7 +45,6 @@ target_link_libraries(eoltrackerweb
     Cutelyst::StaticSimple
     Qt5::Sql
     Cutelyst::Utils::Sql
-    Cutelyst::WSGI
     Cutelyst::Session
     eoltracker
 )

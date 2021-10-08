@@ -1,14 +1,9 @@
 {
   "dependencies": {
-    "@babel/core": "^7.4.5",
-    "@babel/plugin-transform-runtime": "^7.4.4",
-    "@babel/preset-env": "^7.4.5",
-    "@babel/runtime": "^7.4.5",
-    "babel-loader": "^8",
-    "css-loader": "^3.0.0",
-    "image-webpack-loader": "^5.0.0",
-    "style-loader": "^0.23.1",
-    "vis": "^4.21.0",
+    "@babel/preset-env": "^7.15.8",
+    "moment": "^2.29.1",
+    "vis-data": "^7.1.2",
+    "vis-timeline": "^7.4.9",
     "webpack": "^4.34.0",
     "webpack-cli": "^3.3.4"
   }

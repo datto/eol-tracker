@@ -37,7 +37,7 @@ include(GNUInstallDirs)
 find_package(PkgConfig REQUIRED)
 
 find_package(Qt5 COMPONENTS Core Network Sql REQUIRED)
-find_package(Cutelyst2Qt5 REQUIRED)
+find_package(Cutelyst3Qt5 REQUIRED)
 find_package(cpptoml REQUIRED)
 pkg_check_modules(SYSTEMD REQUIRED systemd)
 pkg_get_variable(SYSTEMDUNITDIR systemd systemdsystemunitdir)
