@@ -87,7 +87,7 @@ void Oses::oses_create(Context* c)
     auto filename = name + " " + version + ".repo";
     if (repoFile)
     {
-        auto path = std::filesystem::path("root/static/media") / filename.toStdString();
+        auto path = std::filesystem::path(WEBROOT "/static/media") / filename.toStdString();
         unlink(path.c_str());
         if (!repoFile->save(QString(path.c_str())))
         {

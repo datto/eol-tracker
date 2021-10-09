@@ -20,6 +20,8 @@ BuildRequires:  %{_bindir}/npx
 BuildRequires:  %{_bindir}/yarnpkg
 
 Requires:       distribution-gpg-keys
+Requires:       cutelyst3-qt5-plugins
+Requires:       qt5-qtbase-postgresql
 
 %description
 eol-tracker is an application that allows you to monitor what package versions
