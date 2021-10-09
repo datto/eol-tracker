@@ -2,8 +2,7 @@
 FROM fedora:34
 WORKDIR /app
 RUN dnf install -y dnf-plugins-core && \
-    dnf config-manager --add-repo https://download.opensuse.org/repositories/home:/buschmann23:/Cutelyst/Fedora_34/ && \
-    rpm --import https://download.opensuse.org/repositories/home:/buschmann23:/Cutelyst/Fedora_34/repodata/repomd.xml.key && \
+    dnf config-manager --add-repo https://download.opensuse.org/repositories/home:/buschmann23:/Cutelyst/Fedora_34/home:buschmann23:Cutelyst.repo && \
     dnf update -y && \
     dnf install -y \
         systemd \
